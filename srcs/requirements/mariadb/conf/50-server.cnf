@@ -1,0 +1,27 @@
+# Configurações para o servidor MariaDB (mariadbd)
+[mysqld]
+
+# Permite ligações de qualquer host (necessário para o WordPress,
+# que corre noutro container e liga-se pela rede)
+bind-address = 0.0.0.0
+port = 3306
+
+# datadir já vem definido por omissão pelo pacote mariadb-server,
+# mas o entrypoint também o passa explicitamente como argumento,
+# por isso esta linha é redundante, embora inofensiva.
+datadir = /var/lib/mysql
+
+# A character set defines which characters can be stored in the database
+character-set-server = utf8mb4
+
+# A collation defines how to compare and sort characters.
+# utf8mb4_unicode_ci
+#   │       │     │
+#   │       │     └─ ci = Case Insensitive
+#   │       └─ unicode = regras de comparação linguisticamente corretas
+#   │                    (melhor para acentos, ex: café / cafe)
+#   └─ utf8mb4 = conjunto de caracteres em que esta b 
+collation-server = utf8mb4_unicode_ci
+
+# Skip DNS lookups for faster connections
+skip-name-resolve

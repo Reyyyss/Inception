@@ -1,0 +1,14 @@
+services:
+  mariadb:
+    build: ./srcs/requirements/mariadb
+    secrets:
+      - db_password
+      - db_root_password
+    env_file:
+      - srcs/.env
+
+secrets:
+  db_password:
+    file: ./secrets/db_password.txt
+  db_root_password:
+    file: ./secrets/db_root_password.txt
